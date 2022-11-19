@@ -6,6 +6,7 @@ host = wowed-sunbear-6797.7tt.cockroachlabs.cloud
 database = defaultdb
 port = 26257
 */
+
 const express = require('express')
 const app = express()
 
@@ -14,9 +15,10 @@ const port = 3000
 var bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
-app.use("/",express.static("static"))
+app.use('/', express.static('static'));
 
 const Sequelize = require("sequelize-cockroachdb");
+const { QueryTypes } = require('sequelize-cockroachdb');
 
 var sequelize = new Sequelize({
     dialect: "postgres",
@@ -78,11 +80,12 @@ app.post('/add', (req, res) => {
                 name: req.body.name,
                 age: req.body.age,
                 avgCycle: req.body.avgCycle,
+                dayLeft: req.body.dayLeft,
                 birthControl: req.body.birthControl
             }],
-            {
-                updateOnDuplicate: ["name", "age", "avgCycle", "birthControl"]
-            })
+                {
+                    updateOnDuplicate: ["name", "age", "avgCycle", "dayLeft", "birthControl"]
+                })
         })
     res.send("User created with username: " + req.body.username)
 })
@@ -92,6 +95,10 @@ app.post('/delete', (req, res) => {
     res.send("Users table dropped")
 })
 
+app.get('/getUsername/:username', async (req, res) => {
+    const data = await sequelize.query(`SELECT username FROM users WHERE username = '${req.params.username}'`, { type: QueryTypes.SELECT })
+    res.send(data)
+})
 
 app.listen(port, () => {
     console.log(`Server started at ${port}`)

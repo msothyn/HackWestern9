@@ -21,14 +21,15 @@ function verifyExistingUsername() {
 }
 
 function verifyNewUsername() {
-    const url = '/getUsername/'
-    const query = document.getElementById('username').value
+    let url = '/getUsername/'
+    const query = document.getElementById('newUsername').value
     url += query
 
     fetch(url)
         .then(res => res.json()
             .then(data => {
-                if(!(data[0])){
+                console.log(data)
+                if(data.length == 0){
                     // create entered username and add to DB 
                     addUsernames();
                 }else{
@@ -41,7 +42,6 @@ function verifyNewUsername() {
 
 function addUsernames(){
     let path = '/add';
-    path += document.getElementById("newUsername").value;
 
     fetch(path, {
         method: "POST",

@@ -1,5 +1,5 @@
 function verifyExistingUsername() {
-    const url = '/getUsername/'
+    let url = '/getUsername/'
     const query = document.getElementById('username').value
     url += query
 

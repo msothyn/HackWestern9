@@ -46,6 +46,9 @@ const Users = sequelize.define("users", {
     },
     avgCycle: {
         type: Sequelize.INTEGER
+    },
+    birthControl: {
+        type: Sequelize.BOOLEAN
     }
 })
 
@@ -70,7 +73,8 @@ app.post('/add', (req, res) => {
                 username: req.body.username,
                 name: req.body.name,
                 age: req.body.age,
-                avgCycle: req.body.avgCycle
+                avgCycle: req.body.avgCycle,
+                birthControl: req.body.birthControl
             }])
         })
     res.send("User created with username: " + req.body.username)

@@ -14,8 +14,10 @@ function verifyExistingUsername() {
                     link.appendChild(document.createTextNode('Next'))
                     details.appendChild(link)
                     place.appendChild(details);
+                    document.getElementById("verificationButton").disabled = true;
                 } else {
                     //code for invalid username
+                    document.getElementById('existingUser-status').innerText = "This does not exist! Please try again."
                 }
             }))
 }

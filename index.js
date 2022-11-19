@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 app.use("/",express.static("static"))
 
 const Sequelize = require("sequelize-cockroachdb");
-const e = require('express');
 
 var sequelize = new Sequelize({
     dialect: "postgres",

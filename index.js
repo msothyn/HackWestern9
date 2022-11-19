@@ -14,8 +14,10 @@ const port = 3000
 var bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
+app.use("/",express.static("static"))
 
 const Sequelize = require("sequelize-cockroachdb");
+const e = require('express');
 
 var sequelize = new Sequelize({
     dialect: "postgres",
@@ -47,6 +49,9 @@ const Users = sequelize.define("users", {
     avgCycle: {
         type: Sequelize.INTEGER
     },
+    dayLeft: {
+        type: Sequelize.INTEGER
+    },
     birthControl: {
         type: Sequelize.BOOLEAN
     }
@@ -75,7 +80,10 @@ app.post('/add', (req, res) => {
                 age: req.body.age,
                 avgCycle: req.body.avgCycle,
                 birthControl: req.body.birthControl
-            }])
+            }],
+            {
+                updateOnDuplicate: ["name", "age", "avgCycle", "birthControl"]
+            })
         })
     res.send("User created with username: " + req.body.username)
 })

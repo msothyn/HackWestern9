@@ -9,9 +9,7 @@ port = 26257
 
 const express = require('express')
 const app = express()
-
 const port = 3000
-
 var bodyParser = require("body-parser");
 
 app.use(bodyParser.json());

@@ -12,15 +12,15 @@
 <body>
 
     <form>
-        <label for="lname">Please enter your first name and last name:</label><br>
-        <input type="text" id="name" name="name">
-        <label for="userAge">Age:</label><br>
-        <input type="number" id="age" name="age"><br>
-        <label for="lname">How long is your typical menstrual cycle? (in days):</label><br>
-        <input type="number" id="cycle" name="cycle">
-        <label for="lname">How many days ago was your last period?:</label><br>
-        <input type="number" id="lastPeriod" name="lastPeriod">
-        <button id="enterInfo" onclick="addUserInfo()">🔎</button>
+        <label class="labels" for="lname">Please enter your first name and last name:</label><br>
+        <input class="input" type="text" id="name" name="name"><br>
+        <label class="labels" for="userAge">Age:</label><br>
+        <input class="input" type="number" id="age" name="age"><br>
+        <label class="labels" for="lname">How long is your typical menstrual cycle? (in days):</label><br>
+        <input class="input" type="number" id="cycle" name="cycle"> <br>
+        <label class="labels" for="lname">How many days ago was your last period?:</label><br>
+        <input class="input" type="number" id="lastPeriod" name="lastPeriod">
+        <button class="buttonStyle" id="enterInfo" onclick="addUserInfo()">Next</button>
       </form>
       <span id="addUser-status"></span>
     <script src="../script.js"></script>

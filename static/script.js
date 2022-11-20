@@ -1,6 +1,9 @@
+let username;
+
 function verifyExistingUsername() {
     let url = '/getUsername/'
     const query = document.getElementById('username').value
+    username = document.getElementById('username').value;
     url += query
 
     fetch(url)
@@ -25,6 +28,7 @@ function verifyExistingUsername() {
 function verifyNewUsername() {
     let url = '/getUsername/'
     const query = document.getElementById('newUsername').value
+    username = document.getElementById('newUsername').value
     url += query
 
     fetch(url)

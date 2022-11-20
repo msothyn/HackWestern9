@@ -46,18 +46,19 @@ function verifyNewUsername() {
             }))
 }
 
-function addUsernames() {
+function addUserInfo() {
     let path = '/add';
+    let daysLeft = document.getElementById("cycle").value - document.getElementById("lastPeriod").value 
 
     fetch(path, {
         method: "POST",
         headers: { 'Content-type': "application/json" },
         body: JSON.stringify({
             username: username,
-            name: document.getElementById("").value ,
-            age: document.getElementById("").value,
-            avgCycle: document.getElementById("").value,
-            dayLeft:document.getElementById("").value ,
+            name: document.getElementById("name").value ,
+            age: document.getElementById("age").value,
+            avgCycle: document.getElementById("cycle").value,
+            dayLeft: daysLeft,
         })
     })
         .then(res => {
@@ -73,7 +74,7 @@ function addUsernames() {
         })
 }
 
-function addUserInfo() {
+function addUsernames() {
     let path = '/add';
 
     fetch(path, {

@@ -62,7 +62,7 @@ function addUsernames() {
             let place = document.getElementById('addUser-status')
             let details = document.createElement('button')
             let link = document.createElement('a');
-            link.href = "mainPage.html"
+            link.href = "newUserDetails.html"
             link.appendChild(document.createTextNode('Next'))
             details.appendChild(link)
             place.appendChild(details);

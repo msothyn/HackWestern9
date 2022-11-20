@@ -117,7 +117,7 @@ function addUsernames() {
             let link = document.createElement('a');
             link.href = "newUserDetails.html"
             link.appendChild(document.createTextNode('Next'))
-            document.getElementById("verifyNewUser").disabled=true;
+            document.getElementById("verifyNewUsername").disabled=true;
             details.appendChild(link)
             place.appendChild(details);
         })

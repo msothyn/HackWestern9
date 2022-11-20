@@ -242,3 +242,11 @@ input, select, textarea {
 .nextButton:active {
     transform: scale(1);
 } 
+
+.mainPage{
+  text-align: center;
+}
+
+body{
+    text-align: center;
+}

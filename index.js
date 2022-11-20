@@ -50,9 +50,6 @@ const Users = sequelize.define("users", {
     },
     dayLeft: {
         type: Sequelize.INTEGER
-    },
-    birthControl: {
-        type: Sequelize.BOOLEAN
     }
 })
 
@@ -79,10 +76,9 @@ app.post('/add', (req, res) => {
                 age: req.body.age,
                 avgCycle: req.body.avgCycle,
                 dayLeft: req.body.dayLeft,
-                birthControl: req.body.birthControl
             }],
                 {
-                    updateOnDuplicate: ["name", "age", "avgCycle", "dayLeft", "birthControl"]
+                    updateOnDuplicate: ["name", "age", "avgCycle", "dayLeft"]
                 })
         })
     res.send("User created with username: " + req.body.username)

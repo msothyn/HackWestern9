@@ -53,6 +53,33 @@ function addUsernames() {
         method: "POST",
         headers: { 'Content-type': "application/json" },
         body: JSON.stringify({
+            username: username,
+            name: document.getElementById("").value ,
+            age: document.getElementById("").value,
+            avgCycle: document.getElementById("").value,
+            dayLeft:document.getElementById("").value ,
+        })
+    })
+        .then(res => {
+            document.getElementById('addUser-status').innerText = "Your username was successfully created!!"
+
+            let place = document.getElementById('addUser-status')
+            let details = document.createElement('button')
+            let link = document.createElement('a');
+            link.href = "mainPage.html"
+            link.appendChild(document.createTextNode('Next'))
+            details.appendChild(link)
+            place.appendChild(details);
+        })
+}
+
+function addUserInfo() {
+    let path = '/add';
+
+    fetch(path, {
+        method: "POST",
+        headers: { 'Content-type': "application/json" },
+        body: JSON.stringify({
             username: document.getElementById("newUsername").value
         })
     })

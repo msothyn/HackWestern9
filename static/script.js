@@ -62,7 +62,7 @@ function addUserInfo() {
         })
     })
         .then(res => {
-            document.getElementById('addUser-status').innerText = "Your username was successfully created!!"
+            document.getElementById('addUser-status').innerText = "Your user info was successfully added!!"
 
             let place = document.getElementById('addUser-status')
             let details = document.createElement('button')

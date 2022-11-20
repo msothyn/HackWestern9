@@ -11,6 +11,28 @@ const express = require('express')
 const app = express()
 const port = 3000
 var bodyParser = require("body-parser");
+var fs = require('fs')
+
+app.post('/writeUsername/:username', (req, res) => {
+    var obj = {
+        username: req.params.username
+    }
+    var json = JSON.stringify(obj)
+    fs.writeFile("username.json", json, function (err) {
+        if (err) throw err;
+
+        res.send('File written successfully')
+    })
+})
+
+app.get('/getStoredUsername', (req, res) => {
+    fs.readFile("username.json", "utf8", function read(err, data) {
+        if (err) {
+            throw err;
+        }
+        res.send(data)
+    })
+})
 
 app.use(bodyParser.json());
 app.use('/', express.static('static'));

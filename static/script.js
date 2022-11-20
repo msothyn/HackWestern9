@@ -3,6 +3,7 @@ var cycle;
 var nameOfPerson;
 var age;
 var avgCycle;
+var days;
 
 function addUsername() {
     let url = '/writeUsername/'
@@ -31,6 +32,16 @@ function getUsernameAndDay() {
             .then(data => {
                 username = data.username;
                 averageCycle()
+            }))
+}
+
+function getUsernameAndCycle() {
+    let url = '/getStoredUsername'
+    fetch(url)
+        .then(res => res.json()
+            .then(data => {
+                username = data.username;
+                editAverageCycle()
             }))
 }
 
@@ -136,7 +147,6 @@ function addUsernames() {
 
 function dayCount(daysLeft) {
     document.getElementById('periodMain').innerText = `Your period is in ${daysLeft} days`
-    document.getElementById('mainBtn').disabled = true;
 }
 
 function updateUserInfo() {
@@ -162,9 +172,7 @@ function updateUserInfo() {
             dayLeft: daysLeft,
         })
     })
-
     dayCount(daysLeft)
-
 }
 
 function averageCycle() {
@@ -179,4 +187,50 @@ function averageCycle() {
                 updateUserInfo()
             })
         )
+}
+
+function editAverageCycle() {
+    let url = '/getDayCount/'
+    url += username
+    fetch(url)
+        .then(res => res.json()
+            .then(data => {
+                cycle = data[0].avgCycle
+                nameOfPerson = data[0].name
+                age = data[0].age
+                days = data[0].dayLeft
+                updateCycleInfo()
+            })
+        )
+}
+
+function updateCycleInfo() {
+    let path = '/add';
+    let adjustment;
+
+    if( document.getElementById('predictionCorrecter').value ==""){
+        adjustment = 0;
+    }else {
+        adjustment =  document.getElementById('predictionCorrecter').value
+    }
+
+    let newCycle = Math.floor((parseFloat(cycle) + parseFloat(adjustment) + parseFloat(cycle))/2)
+
+    fetch(path, {
+        method: "POST",
+        headers: { 'Content-type': "application/json" },
+        body: JSON.stringify({
+            username: username,
+            name: nameOfPerson,
+            age: age,
+            avgCycle: newCycle,
+            dayLeft: days,
+        })
+    })
+    feedback()
+}
+
+function feedback() {
+    document.getElementById('comfirmation1').innerText = `Thank you for your feedback!`
+    document.getElementById('comfirmation2').innerText = `This will help make future predictions more accurate.`
 }

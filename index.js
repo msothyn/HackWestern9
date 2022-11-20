@@ -111,6 +111,11 @@ app.post('/delete', (req, res) => {
     res.send("Users table dropped")
 })
 
+app.get('/getDayCount/:username', async (req, res) => {
+    const data = await sequelize.query(`SELECT * FROM users WHERE username = '${req.params.username}'`, { type: QueryTypes.SELECT })
+    res.send(data);
+})
+
 app.get('/getUsername/:username', async (req, res) => {
     const data = await sequelize.query(`SELECT username FROM users WHERE username = '${req.params.username}'`, { type: QueryTypes.SELECT })
     res.send(data)

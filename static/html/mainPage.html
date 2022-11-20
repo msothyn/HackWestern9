@@ -12,12 +12,12 @@
 <body>
     <div class="mainPage">
     <h2>Let's calculate your next period!</h2>
-    <p>How many days ago was your last cycle?</p> <br>
+    <p>How many days ago was your last period?</p> <br>
     <input type="text" id="daysAgo" > 
+    <h2 id="periodMain"></h2> <br>
+    <button id="mainBtn" onclick="getUsernameAndDay()">Calculate!</button> <br> <br> <br>
     <p>If your period did not start on our predicted date, please indicate how many days earlier <br> or later it was (enter negative values for earlier, and positive values for later). </p> 
     <input type="text" id="predictionCorrecter" > 
-    <h2 id="periodMain">Your period is in days</h2> <br>
-    <button id="mainBtn">Go!</button>
     </div>
     
     <script src="../script.js"></script>

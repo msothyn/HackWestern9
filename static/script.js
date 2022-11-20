@@ -1,8 +1,8 @@
-document.getElementById('verificationButton').addEventListener('click', verifyExistingUsername);
-document.getElementById('verifyNewUsername').addEventListener('click', verifyNewUsername);
-document.getElementById('enterInfo').addEventListener('click', addUserInfo);
-
 var username;
+var cycle;
+var nameOfPerson;
+var age;
+var avgCycle;
 
 function addUsername() {
     let url = '/writeUsername/'
@@ -18,9 +18,19 @@ function getUsername() {
     let url = '/getStoredUsername'
     fetch(url)
         .then(res => res.json()
-            .then(data =>{
+            .then(data => {
                 username = data.username;
                 addUserInfo()
+            }))
+}
+
+function getUsernameAndDay() {
+    let url = '/getStoredUsername'
+    fetch(url)
+        .then(res => res.json()
+            .then(data => {
+                username = data.username;
+                averageCycle()
             }))
 }
 
@@ -94,6 +104,7 @@ function addUserInfo() {
             let link = document.createElement('a');
             link.href = "mainPage.html"
             link.appendChild(document.createTextNode('Next'))
+            document.getElementById('enterInfo').disabled = true;
             details.appendChild(link)
             place.appendChild(details);
         })
@@ -117,10 +128,55 @@ function addUsernames() {
             let link = document.createElement('a');
             link.href = "newUserDetails.html"
             link.appendChild(document.createTextNode('Next'))
-            document.getElementById("verifyNewUsername").disabled=true;
+            document.getElementById("verifyNewUsername").disabled = true;
             details.appendChild(link)
             place.appendChild(details);
         })
 }
 
+function dayCount(daysLeft) {
+    document.getElementById('periodMain').innerText = `Your period is in ${daysLeft} days`
+    document.getElementById('mainBtn').disabled = true;
+}
 
+function updateUserInfo() {
+    let daysAgo;
+    let path = '/add';
+
+    if (document.getElementById("daysAgo").value == "") {
+        daysAgo = 0
+    } else {
+        daysAgo = document.getElementById("daysAgo").value
+    }
+
+    let daysLeft = cycle - daysAgo
+
+    fetch(path, {
+        method: "POST",
+        headers: { 'Content-type': "application/json" },
+        body: JSON.stringify({
+            username: username,
+            name: nameOfPerson,
+            age: age,
+            avgCycle: cycle,
+            dayLeft: daysLeft,
+        })
+    })
+
+    dayCount(daysLeft)
+
+}
+
+function averageCycle() {
+    let url = '/getDayCount/'
+    url += username
+    fetch(url)
+        .then(res => res.json()
+            .then(data => {
+                cycle = data[0].avgCycle
+                nameOfPerson = data[0].name
+                age = data[0].age
+                updateUserInfo()
+            })
+        )
+}

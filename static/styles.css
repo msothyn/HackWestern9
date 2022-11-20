@@ -1,0 +1,111 @@
+body {
+
+    /*background: radial-gradient(ellipse at top, rgba(255,154,158,1), transparent),
+    radial-gradient(ellipse at bottom,  rgba(254,207,239,1)); */
+
+    background: radial-gradient(ellipse at top, #cbc3e3, transparent),
+        radial-gradient(ellipse at bottom, rgba(254, 207, 239, 1), transparent);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: cursive;
+
+}
+
+img {
+    width: 150px;
+    height: auto;
+}
+
+/* Yes button styling */
+.yesButton {
+    appearance: none;
+    font-family: cursive;
+    background-color: #FFFFFF;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #ADCFFF 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -.24px;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1rem;
+    quotes: auto;
+    text-align: right;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-right: 10px;
+}
+
+.yesButton:hover {
+    background-color: #cbc3e3;
+    box-shadow: #ADCFFF 0 -6px 8px inset;
+    transform: scale(1);
+}
+
+.yesButton:active {
+    transform: scale(1);
+}
+
+@media (min-width: 768px) {
+    .yesButton {
+        font-size: 1.5rem;
+        padding: .75rem 2rem;
+    }
+}
+
+/* NO button styling */ 
+.noButton {
+    appearance: none;
+    font-family: cursive;
+    background-color: #FFFFFF;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #ADCFFF 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -.24px;
+    margin: 0;
+    outline: none;
+    padding: 1rem 1rem;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.noButton:hover {
+    background-color: #cbc3e3;
+    box-shadow: #ADCFFF 0 -6px 8px inset;
+    transform: scale(1);
+}
+
+.noButton:active {
+    transform: scale(1);
+}
+
+@media (min-width: 768px) {
+    .noButton {
+        font-size: 1.5rem;
+        padding: .75rem 2rem;
+    }
+}
+
